@@ -24,12 +24,20 @@ pipeline {
             }
         }
 
-        //  stage('Login to dockerhub') {
-        //     steps {
-        //         script {
-        //             sh 'docker build -t $IMAGE_NAME:latest .'
-        //         }
-        //     }
-        // }
+         stage('Login to dockerhub') {
+            steps {
+                script {
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                }
+            }
+        }
+
+        stage('Push image to dockerhub') {
+            steps {
+                script {
+                    sh 'docker push $IMAGE_NAME:latest'
+                }
+            }
+        }
     }
 }
