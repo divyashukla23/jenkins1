@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Clone repo') {
             steps {
-                git_branch: 'main', url: 'https://github.com/divyashukla23/jenkins1'
+                git branch: 'main', url: 'https://github.com/divyashukla23/jenkins1'
             }
         }
 
