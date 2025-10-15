@@ -18,16 +18,17 @@ pipeline {
     
     post{
         success{
-            emailText {
-                to: 'divyatest2302@gmail.com',
-                subject: "SUCCESS '${env.JOB_NAME}' #${env.BUILD_NUMBER}",
+             emailext (
+                to: 'youremail@gmail.com',
+                subject: "✅ SUCCESS: Job '${env.JOB_NAME}' #${env.BUILD_NUMBER}",
                 body: """
-                <h3> BUILD SUCESSFUL! </h3>
-                <p>Job: ${env.JOB_NAME} </p>
-                <p> Build number: ${env.BUILD_NUMBER} </p>
-                mimeType: 'text/html'
+                <h2>Build Successful!</h2>
+                <p>Job: ${env.JOB_NAME}</p>
+                <p>Build Number: ${env.BUILD_NUMBER}</p>
+                <p>Check details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
-            }
+                mimeType: 'text/html'
+            )
         }
     }
 }
